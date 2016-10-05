@@ -31,7 +31,7 @@ def make_chains(text_string):
     for i in range(len(words) - 2):
         word_after_pair = words[i + 2]
         word_pair = (words[i], words[i + 1])
-        
+
         if word_pair not in chains:
             chains[word_pair] = []
             #Need to make the value a list by putting brackets around it
@@ -52,12 +52,23 @@ def make_chains(text_string):
 
 def make_text(chains):
     """Takes dictionary of markov chains; returns random text."""
-
+    
     text = ""
+
+    random_pair = choice(chains.keys())
+
+    #We created current key which will be replaced each time this process
+    #happens. Perhaps we can structure the repetition as a while so that
+    #while the key is in the dictionary, it continues building the text string
+
+    current_key = random_pair
+    chosen_word = choice(chains[current_key])
+    new_key = (current_key[1], chosen_word)
+    #include line to append to text variable. 
 
     # your code goes here
 
-    return text
+    # return text
 
 
 input_path = "green-eggs.txt"
@@ -67,10 +78,11 @@ input_text = open_and_read_file('green-eggs.txt')
 
 # # Get a Markov chain
 chains = make_chains(input_text)
-print chains
+# print chains
 
 # # Produce random text
-# random_text = make_text(chains)
+random_text = make_text(chains)
+print random_text
 
 # #print random_text
 # print make_chains(input_text)
