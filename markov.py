@@ -52,8 +52,14 @@ def make_chains(text_string):
 
 def make_text(chains):
     """Takes dictionary of markov chains; returns random text."""
+    
+    random_text =  " "
 
-    random_text = ""
+
+    #We created current key which will be replaced each time this process
+    #happens. Perhaps we can structure the repetition as a while so that
+    #while the key is in the dictionary, it continues building the text string
+
 
     current_key = choice(chains.keys())
 
