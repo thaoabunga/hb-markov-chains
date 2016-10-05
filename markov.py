@@ -52,24 +52,21 @@ def make_chains(text_string):
 
 def make_text(chains):
     """Takes dictionary of markov chains; returns random text."""
-    
-    text = ""
 
-    random_pair = choice(chains.keys())
+    random_text = ""
 
-    #We created current key which will be replaced each time this process
-    #happens. Perhaps we can structure the repetition as a while so that
-    #while the key is in the dictionary, it continues building the text string
+    current_key = choice(chains.keys())
 
-    current_key = random_pair
-    chosen_word = choice(chains[current_key])
-    new_key = (current_key[1], chosen_word)
-    #include line to append to text variable. 
+    while current_key in chains:
+        chosen_word = choice(chains[current_key])
+        #Gives us random word from a list of third words
+        new_key = current_key[1], chosen_word
+        #Pairs the last word of the current tuple with the randomly picked 3rd word
+        random_text = random_text + " " + chosen_word
+        #We want this to be a string
+        current_key = new_key   
 
-    # your code goes here
-
-    # return text
-
+    return random_text
 
 input_path = "green-eggs.txt"
 
@@ -78,11 +75,10 @@ input_text = open_and_read_file('green-eggs.txt')
 
 # # Get a Markov chain
 chains = make_chains(input_text)
-# print chains
 
 # # Produce random text
 random_text = make_text(chains)
 print random_text
 
 # #print random_text
-# print make_chains(input_text)
+#make_chains(input_text)
