@@ -27,13 +27,17 @@ def make_chains(text_string):
     chains = {} 
 
     words = text_string.split()
-    for i in range(len(words) - 1):
-        #word_after_pair = words[i + 2]
-        #value
+    
+    for i in range(len(words) - 2):
+        word_after_pair = words[i + 2]
         word_pair = (words[i], words[i + 1])
-        #key
+        
         if word_pair not in chains:
-             chains[word_pair] = word_after_pair
+            chains[word_pair] = []
+            #Need to make the value a list by putting brackets around it
+        chains[word_pair].append(word_after_pair)
+
+    return chains
 
     #print word_pair
 
@@ -60,7 +64,6 @@ input_path = "green-eggs.txt"
 
 # Open the file and turn it into one long string
 input_text = open_and_read_file('green-eggs.txt')
-print input_text
 
 # # Get a Markov chain
 chains = make_chains(input_text)
