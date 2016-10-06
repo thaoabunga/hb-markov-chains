@@ -1,6 +1,6 @@
 from random import choice
 
-
+asdflkadjflaks
 def open_and_read_file(file_path):
     """Takes file path as string; returns text as string.
 
